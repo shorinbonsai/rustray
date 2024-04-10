@@ -4,9 +4,9 @@ use std::error::Error;
 use std::fs::File;
 use std::io::Write;
 
-const NX: u32 = 400;
-const NY: u32 = 300;
-const COLOR: f64 = 255.99;
+const NX: u32 = 256;
+const NY: u32 = 256;
+const COLOR: f64 = 255.999;
 
 fn main() -> Result<(), Box<dyn Error>> {
     // Create PPM image
@@ -16,11 +16,11 @@ fn main() -> Result<(), Box<dyn Error>> {
     // Create PNG image
     let mut png_image = image::RgbImage::new(NX, NY);
 
-    for j in (0..NY).rev() {
+    for j in 0..NY {
         for i in 0..NX {
-            let r = i as f64 / NX as f64;
-            let g = j as f64 / NY as f64;
-            let b = 0.2;
+            let r = i as f64 / (NX as f64 - 1.0);
+            let g = j as f64 / (NY as f64 - 1.0);
+            let b = 0.0;
 
             let ir = (COLOR * r) as u8;
             let ig = (COLOR * g) as u8;
@@ -30,7 +30,7 @@ fn main() -> Result<(), Box<dyn Error>> {
             writeln!(ppm_file, "{} {} {}", ir, ig, ib)?;
 
             // Write to PNG image
-            png_image.put_pixel(i, NY - 1 - j, image::Rgb([ir, ig, ib]));
+            png_image.put_pixel(i, j, image::Rgb([ir, ig, ib]));
         }
     }
 
