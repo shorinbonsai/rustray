@@ -4,6 +4,8 @@ use std::error::Error;
 use std::fs::File;
 use std::io::Write;
 
+pub mod vec3;
+
 const NX: u32 = 256;
 const NY: u32 = 256;
 const COLOR: f64 = 255.999;
@@ -17,6 +19,8 @@ fn main() -> Result<(), Box<dyn Error>> {
     let mut png_image = image::RgbImage::new(NX, NY);
 
     for j in 0..NY {
+        let tmp = NY - j;
+        println!("Lines remaining: {tmp}");
         for i in 0..NX {
             let r = i as f64 / (NX as f64 - 1.0);
             let g = j as f64 / (NY as f64 - 1.0);
@@ -34,6 +38,7 @@ fn main() -> Result<(), Box<dyn Error>> {
         }
     }
 
+    println!("Done");
     // Save PNG image
     png_image.save("out.png")?;
 
