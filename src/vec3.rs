@@ -193,7 +193,7 @@ impl Default for Vec3 {
     }
 }
 
-type Color = Vec3;
+pub type Color = Vec3;
 
 pub fn write_color(file: &mut File, pixel_color: &Color) -> Result<(), std::io::Error> {
     let r = pixel_color.e[0];
