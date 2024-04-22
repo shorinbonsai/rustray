@@ -4,12 +4,11 @@ use std::error::Error;
 use std::fs::File;
 use std::io::Write;
 
-use crate::vec3::Color;
+use crate::vec3::vec3::Color;
 
-pub mod vec3;
-use crate::vec3::write_color;
-use crate::vec3::write_color_png;
-use crate::vec3::Vec3;
+mod vec3;
+use crate::vec3::vec3::write_color;
+use crate::vec3::vec3::write_color_png;
 
 const NX: u32 = 256;
 const NY: u32 = 256;
