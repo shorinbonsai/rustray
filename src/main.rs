@@ -9,6 +9,7 @@ use crate::vec3::vec3::Color;
 mod vec3;
 use crate::vec3::vec3::write_color;
 use crate::vec3::vec3::write_color_png;
+mod ray;
 
 const NX: u32 = 256;
 const NY: u32 = 256;
@@ -31,7 +32,6 @@ fn main() -> Result<(), Box<dyn Error>> {
 
             write_color(&mut ppm_file, &pixel_color)?;
             write_color_png(&mut png_image, &pixel_color, i, j)?;
-
         }
     }
 
